@@ -9,6 +9,8 @@ import java.sql.*;
 public class Db {
 
     public static boolean userIsRegister(String name) throws SQLException {
+        if(name == null)
+            return false;
         Connection connection = C3p0Utils.getConnection();
         if(connection == null){
             System.out.println("get connection falied!");
@@ -26,7 +28,30 @@ public class Db {
             return false;
         }
     }
+    public static int userVerify(String name, String password) throws SQLException {
+        if(name == null || password == null)
+            return -1;
+        Connection connection = C3p0Utils.getConnection();
+        if(connection == null){
+            System.out.println("get connection falied!");
+            return -2;
+        }
+        String query = "SELECT * FROM online_mall_user WHERE name=? AND password=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,name);
+        pst.setString(2,password);
+        ResultSet rs = pst.executeQuery();        // 执行查询
+        if(rs.next()) {
+            C3p0Utils.close(connection, pst, rs);
+            return 0;
+        } else {
+            C3p0Utils.close(connection, pst, rs);
+            return 1;
+        }
+    }
     public static boolean addUser(String name, String password) throws SQLException {
+        if(name == null || password == null || name.length() < 2 || password.length() < 2)
+            return false;
         Connection connection = C3p0Utils.getConnection();
         if(connection == null){
             System.out.println("get connection falied!");

@@ -21,5 +21,5 @@ CREATE TABLE `online_mall_user` (
   `password` char(20) NOT NULL DEFAULT '' COMMENT '密码',
   `register_time` datetime NOT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
