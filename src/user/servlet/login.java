@@ -19,21 +19,18 @@ import java.sql.SQLException;
 public class login extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("进入login servlet");
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html");
         resp.setCharacterEncoding("utf-8");
         String name = req.getParameter("username");
-        //String password = req.getParameter("password");
-        boolean isRe = false;
+        String password = req.getParameter("password");
+        boolean isRe = false;//是否注册
+        int vrRe = -3;//验证密码
         try {
             isRe = Db.userIsRegister(name);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        if(name.equals("付卓军")){
-            System.out.println("该用户是注册用户");
-            req.getRequestDispatcher("welcome.jsp").forward(req, resp);
-            return;
         }
         if(isRe == false){
             PrintWriter out = resp.getWriter();
@@ -42,6 +39,18 @@ public class login extends HttpServlet {
             return;
         }
         System.out.println("该用户是注册用户");
-        req.getRequestDispatcher(req.getContextPath() + "/jsp/welcome.jsp").forward(req, resp);
+        try {
+            vrRe = Db.userVerify(name, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(vrRe == 0) {
+            System.out.println("认证成功");
+            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+        }else{
+            PrintWriter out = resp.getWriter();
+            out.println("密码错误！");
+            System.out.println("密码错误!");
+        }
     }
 }
