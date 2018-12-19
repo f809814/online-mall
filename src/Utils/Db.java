@@ -1,7 +1,5 @@
 package Utils;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
 import java.sql.*;
 
 /**
@@ -39,7 +37,7 @@ public class Db {
         pst.setString(1,name);
         pst.setString(2,password);
         pst.setTimestamp(3,new Timestamp(new java.util.Date().getTime()));
-        int inRes = pst.executeUpdate();        // 执行查询
+        int inRes = pst.executeUpdate(); // 执行查询
         boolean res;
         if (inRes == 0)
             res = false;

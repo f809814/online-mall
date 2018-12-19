@@ -3,7 +3,7 @@
     <named-config name="c3p0_online_mall">
         <property name="user">root</property>
         <property name="password"></property>
-        <property name="driverclass">com.mysql.cj.jdbc.Driver</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/mysql?&amp;useSSL=false&amp;serverTimezone=UTC</property>
 
         <!-- 若数据库中连接数不足时，一次向数据库服务器申请多少个链接 -->
