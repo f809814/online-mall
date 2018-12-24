@@ -15,8 +15,8 @@ import java.util.HashMap;
  * @author fu
  * @date 2018/12/19 - 15:41
  */
-@WebServlet(name = "register", urlPatterns = "/register")
-public class register extends HttpServlet {
+@WebServlet(name = "Register", urlPatterns = "/register")
+public class Register extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("进入register servlet");
         request.setCharacterEncoding("utf-8");
@@ -48,7 +48,7 @@ public class register extends HttpServlet {
                 errors.put("username", "注册失败，请检查用户名和密码格式");
                 request.setAttribute("form", form);
                 request.setAttribute("errors", errors);
-                request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+                request.getRequestDispatcher("/jsp/Register.jsp").forward(request, response);
                 return;
             }
             System.out.println("插入数据结束");
@@ -60,7 +60,7 @@ public class register extends HttpServlet {
             errors.put("username", "该用户已注册");
             request.setAttribute("form", form);
             request.setAttribute("errors", errors);
-            request.getRequestDispatcher("/jsp/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/Register.jsp").forward(request, response);
         }
     }
 }

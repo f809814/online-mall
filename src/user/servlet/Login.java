@@ -15,8 +15,8 @@ import java.sql.SQLException;
  * @author fu
  * @date 2018/12/18 - 14:36
  */
-@WebServlet(name = "login" ,urlPatterns = "/login")
-public class login extends HttpServlet {
+@WebServlet(name = "Login" ,urlPatterns = "/login")
+public class Login extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("进入login servlet");
